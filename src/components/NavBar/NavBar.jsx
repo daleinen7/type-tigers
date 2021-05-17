@@ -12,6 +12,8 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/orders">Order History</NavLink>
       &nbsp; | &nbsp;
+      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/game">Game</NavLink>
+      &nbsp; | &nbsp;
       <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/orders/new">New Order</NavLink>
       &nbsp; | &nbsp;
       <span>Welcome, {user.name}</span>
