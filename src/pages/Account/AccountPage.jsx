@@ -27,6 +27,18 @@ export default function AccountPage() {
   return (
     <>
       <h1>Account</h1>
+
+      <ul>
+        {kids.map(kid => {
+          return (
+          <li>
+            {kid.name}
+            {kid.level} | 
+            {kid.coins}
+          </li>)
+        })}
+      </ul>
+      
       <form onSubmit={handleSubmit} autoComplete="off">
         <div>
           <label>Name</label>
