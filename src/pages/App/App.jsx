@@ -4,7 +4,7 @@ import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import Game from "../Game";
-import NewOrderPage from "../NewOrderPage/NewOrderPage";
+import Account from "../Account/AccountPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -21,13 +21,10 @@ export default function App() {
             <Route path="/game">
               <Game />
             </Route>
-            <Route path="/orders/new">
-              <NewOrderPage />
+            <Route path="/account">
+              <Account />
             </Route>
-            <Route path="/orders">
-              <OrderHistoryPage />
-            </Route>
-            <Redirect to="/orders" />
+            <Redirect to="/account" />
           </Switch>
         </>
       ) : (
