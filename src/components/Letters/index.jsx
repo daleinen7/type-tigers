@@ -1,29 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import chroma from "chroma-js";
 
 import "./styles.css";
 
 export const Item = styled.div`
-  display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');  
+display: flex;
   justify-content: center;
-  padding: .5rem;
-  background-color: #C4C4C4;
-  color: black;
-  font-size: 28px;
+  font-family: 'Quicksand';
+  padding: .2rem;
+  ${({ color = chroma.random() }) =>
+    css `background-color: ${color};
+  color: ${chroma.contrast(color, "black") >= 4 ? "black" : "white"};
+  font-size: 2em;
   font-weight: bold;
-  border: 3px solid;
-  border-color: gray;
+  border: 2px dashed; 
+  border-color: ${color};
   border-radius: 15px;
-   
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  background-clip: content-box;
+  `}
   `;
 
 export const Grid = styled.div`
