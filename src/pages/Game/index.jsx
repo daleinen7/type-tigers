@@ -9,8 +9,13 @@ const StyledDiv = styled.div`
 
 export default function Game() {
   const [flashWord, setFlashWord] = useState("");
-  const [userAnswer, setUserAnswer] = useState("");
   const testArr = ["five", "two", "three", "four", "five"];
+
+  const compareAnswer = (word) => {
+    flashWord.toUpperCase() === word.join("")
+      ? console.log("correct")
+      : console.log("incorrect");
+  };
 
   return (
     <StyledDiv>
@@ -21,11 +26,7 @@ export default function Game() {
         setFlashWord={setFlashWord}
         testArr={testArr}
       />
-      <UserAnswer
-        flashWord={flashWord}
-        userAnswer={userAnswer}
-        setUserAnswer={setUserAnswer}
-      />
+      <UserAnswer flashWord={flashWord} compareAnswer={compareAnswer} />
     </StyledDiv>
   );
 }
