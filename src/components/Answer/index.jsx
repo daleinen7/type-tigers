@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Letters from "../Letters/index"
 
 export default function Answer({answer}) {
 
@@ -10,6 +11,7 @@ export default function Answer({answer}) {
   
   return(
     <>
+    <Letters />
       <form>
         <input onChange={handleChange} type="text" name="word" id="" value={answer}/>
       </form>
