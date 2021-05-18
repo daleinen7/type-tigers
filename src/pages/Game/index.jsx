@@ -5,6 +5,7 @@ import update from "immutability-helper";
 import FlashWord from "../../components/FlashWord";
 import UserAnswer from "../../components/UserAnswer";
 import ErrorWords from "../../components/ErrorWords";
+import { set } from "mongoose";
 
 const StyledDiv = styled.div`
   background: gray;
@@ -17,6 +18,10 @@ export default function Game() {
   const [correct, setCorrect] = useState(false);
   const [arrCount, setArrCount] = useState(0);
   const arrCounter = useRef(arrCount);
+  const [letterCount, setLetterCount] = useState(0);
+  const [clicked, setClicked] = useState([]);
+  const counter = useRef(letterCount);
+  const [wordTimer, setWordTimer] = useState(false);
 
   const compareAnswer = (word) => {
     if (flashWord.toUpperCase() === word.join("")) {
@@ -48,6 +53,10 @@ export default function Game() {
     setFlashWord(testArr[arrCounter.current]);
     setCorrect(false);
     setErrorWords([]);
+    setClicked([]);
+    setLetterCount(0);
+    counter.current = 0;
+    setWordTimer(false);
   };
 
   useEffect(() => {
@@ -62,6 +71,8 @@ export default function Game() {
         flashWord={flashWord}
         setFlashWord={setFlashWord}
         testArr={testArr}
+        wordTimer={wordTimer}
+        setWordTimer={setWordTimer}
       />
       <ErrorWords errorWords={errorWords} />
       <UserAnswer
@@ -69,6 +80,11 @@ export default function Game() {
         compareAnswer={compareAnswer}
         correct={correct}
         handleNextWord={handleNextWord}
+        counter={counter}
+        clicked={clicked}
+        setClicked={setClicked}
+        letterCount={letterCount}
+        setLetterCount={setLetterCount}
       />
     </StyledDiv>
   );

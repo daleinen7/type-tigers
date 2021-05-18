@@ -53,13 +53,15 @@ export default function Answer({
   flashWord,
   correct,
   handleNextWord,
+  counter,
+  clicked,
+  setClicked,
+  letterCount,
+  setLetterCount,
 }) {
   // States and refs
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
-  const [letterCount, setLetterCount] = useState(0);
-  const [clicked, setClicked] = useState([]);
-  const counter = useRef(letterCount);
 
   // Generating selectable letters
   const makeSelectableLetters = (word) => {
