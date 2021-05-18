@@ -33,7 +33,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
     counter.current = newCounter;
   };
 
-  const removeLetter = (event) => {
+  const removeLetter = () => {
     const newCounter = letterCount - 1;
     setLetterCount(newCounter);
     counter.current = newCounter;
