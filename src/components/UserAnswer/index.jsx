@@ -48,7 +48,7 @@ const alphabet = [
   "Z",
 ];
 
-export default function Answer({ compareAnswer, flashWord }) {
+export default function Answer({ compareAnswer, flashWord, correct }) {
   // States and refs
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
@@ -125,8 +125,9 @@ export default function Answer({ compareAnswer, flashWord }) {
         {clickedLetters?.map((letter, index) => {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
         })}
+        {correct && <div>✓</div>}
       </div>
-      <button onClick={removeLetter}>Backspace</button>
+      {!correct && <button onClick={removeLetter}>Backspace</button>}
       <Grid>
         {selectableLetters?.map((letter, index) => {
           return (
@@ -140,7 +141,11 @@ export default function Answer({ compareAnswer, flashWord }) {
           );
         })}
       </Grid>
-      <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
+      {correct ? (
+        <button>Next</button>
+      ) : (
+        <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
+      )}
     </>
   );
 }
