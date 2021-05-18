@@ -16,6 +16,11 @@ const Button = styled.button`
   outline: none;
   cursor: pointer;
 `
+const Nav = styled.div`
+font-family: 'Quicksand';
+color: white;
+background-color: #7566E5;
+`
 export default function NavBar({ user, setUser }) {
 
   function handleLogOut() {
@@ -25,11 +30,11 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/orders"><Button>Practice</Button></NavLink>
+      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/practice">Practice</NavLink>
       &nbsp; | &nbsp;
-      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/game"><Button>Game</Button></NavLink>
+      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/game">Game</NavLink>
       &nbsp; | &nbsp;
-      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/orders/new"><Button>Sign Up</Button></NavLink>
+      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/account">Dashboard</NavLink>
       &nbsp; | &nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
