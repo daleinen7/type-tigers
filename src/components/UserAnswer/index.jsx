@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import update from "immutability-helper";
 
@@ -12,6 +12,7 @@ const LetterDiv = styled.div`
 export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
   const [clickedLetters, setClickedLetters] = useState([]);
   const [letterCount, setLetterCount] = useState(0);
+  const counter = useRef(letterCount);
 
   const makeBlankLetters = (word) => {
     let blankLetters = [];
@@ -24,11 +25,23 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
   const addLetter = (event) => {
     setClickedLetters(
       update(clickedLetters, {
-        [letterCount]: { $set: event.target.innerText },
+        [counter.current]: { $set: event.target.innerText },
       })
     );
-    setLetterCount(letterCount + 1);
-    console.log(clickedLetters);
+    const newCounter = letterCount + 1;
+    setLetterCount(newCounter);
+    counter.current = newCounter;
+  };
+
+  const removeLetter = (event) => {
+    const newCounter = letterCount - 1;
+    setLetterCount(newCounter);
+    counter.current = newCounter;
+    setClickedLetters(
+      update(clickedLetters, {
+        [counter.current]: { $set: "" },
+      })
+    );
   };
 
   useEffect(() => {
@@ -42,16 +55,17 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
         })}
       </div>
-      <button onClick={addLetter}>a</button>
-      <button>b</button>
-      <button>c</button>
-      <button>d</button>
-      <button>e</button>
-      <button>f</button>
-      <button>g</button>
-      <button>h</button>
-      <button>i</button>
-      <button>j</button>
+      <button onClick={removeLetter}>Backspace</button>
+      <button onClick={addLetter}>p</button>
+      <button onClick={addLetter}>b</button>
+      <button onClick={addLetter}>c</button>
+      <button onClick={addLetter}>d</button>
+      <button onClick={addLetter}>e</button>
+      <button onClick={addLetter}>f</button>
+      <button onClick={addLetter}>g</button>
+      <button onClick={addLetter}>h</button>
+      <button onClick={addLetter}>i</button>
+      <button onClick={addLetter}>l</button>
     </>
   );
 }
