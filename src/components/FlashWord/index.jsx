@@ -4,7 +4,6 @@ export default function FlashWord({ flashWord, setFlashWord, testArr }) {
   const [wordTimer, setWordTimer] = useState(false);
 
   useEffect(() => {
-    setFlashWord(testArr[0]);
     const timer = setTimeout(() => {
       setWordTimer(true);
     }, 1000);

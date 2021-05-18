@@ -48,7 +48,12 @@ const alphabet = [
   "Z",
 ];
 
-export default function Answer({ compareAnswer, flashWord, correct }) {
+export default function Answer({
+  compareAnswer,
+  flashWord,
+  correct,
+  handleNextWord,
+}) {
   // States and refs
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
@@ -142,7 +147,7 @@ export default function Answer({ compareAnswer, flashWord, correct }) {
         })}
       </Grid>
       {correct ? (
-        <button>Next</button>
+        <button onClick={handleNextWord}>Next</button>
       ) : (
         <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
       )}

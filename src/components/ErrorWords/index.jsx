@@ -5,7 +5,6 @@ const ErrorWords = ({ errorWords }) => {
   return (
     <>
       {errorWords.map((word, index) => {
-        console.log("word -", word);
         return (
           <div key={index}>
             {word.map((letter, index) => {
