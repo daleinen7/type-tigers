@@ -23,25 +23,29 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
   };
 
   const addLetter = (event) => {
-    setClickedLetters(
-      update(clickedLetters, {
-        [counter.current]: { $set: event.target.innerText },
-      })
-    );
-    const newCounter = letterCount + 1;
-    setLetterCount(newCounter);
-    counter.current = newCounter;
+    if (counter.current < flashWord.length) {
+      setClickedLetters(
+        update(clickedLetters, {
+          [counter.current]: { $set: event.target.innerText },
+        })
+      );
+      const newCounter = letterCount + 1;
+      setLetterCount(newCounter);
+      counter.current = newCounter;
+    }
   };
 
   const removeLetter = () => {
-    const newCounter = letterCount - 1;
-    setLetterCount(newCounter);
-    counter.current = newCounter;
-    setClickedLetters(
-      update(clickedLetters, {
-        [counter.current]: { $set: "" },
-      })
-    );
+    if (counter.current > 0) {
+      const newCounter = letterCount - 1;
+      setLetterCount(newCounter);
+      counter.current = newCounter;
+      setClickedLetters(
+        update(clickedLetters, {
+          [counter.current]: { $set: "" },
+        })
+      );
+    }
   };
 
   useEffect(() => {
