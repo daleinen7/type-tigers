@@ -22,7 +22,7 @@ display: flex;
   justify-content: center;
   font-family: 'Quicksand';
   padding: .2rem;
-  ${({ color = chroma.random() }) =>
+  ${({ color = chroma('#63A35B') }) =>
     css `background-color: ${color};
   color: white;
   font-size: 2rem;
