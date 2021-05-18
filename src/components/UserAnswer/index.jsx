@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
 import update from "immutability-helper";
+import styled, { css } from "styled-components";
+import chroma from "chroma-js";
 
 const LetterDiv = styled.div`
   margin: 5px;
@@ -8,7 +9,30 @@ const LetterDiv = styled.div`
   height: 50px;
   width: 30px;
 `;
-
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 70px);
+  grid-template-rows: 70px 70px;
+  grid-gap: 15px;
+  justify-content: center;
+`;
+const Letter = styled.button`
+  
+display: flex;
+  justify-content: center;
+  font-family: 'Quicksand';
+  padding: .2rem;
+  ${({ color = chroma.random() }) =>
+    css `background-color: ${color};
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 2px dashed; 
+  border-color: ${color};
+  border-radius: 10px;
+  background-clip: content-box;
+  `}
+  `;
 const alphabet = [
   "A",
   "B",
@@ -113,15 +137,15 @@ export default function Answer({ compareAnswer, flashWord }) {
         })}
       </div>
       <button onClick={removeLetter}>Backspace</button>
-      <div>
+      <Grid>
         {selectableLetters?.map((letter, index) => {
           return (
-            <button onClick={addLetter} key={index}>
+            <Letter onClick={addLetter} key={index}>
               {letter}
-            </button>
+            </Letter>
           );
         })}
-      </div>
+      </Grid>
       <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
     </>
   );
