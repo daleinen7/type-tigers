@@ -31,6 +31,7 @@ export default function Letters({ addLetter, letter, index, clicked }) {
       <Letter
         style={{
           pointerEvents: clicked.includes(index) ? "none" : "auto",
+          backgroundColor: clicked.includes(index) ? "gray" : "",
         }}
         onClick={() => handleClick(letter, index)}
       >
