@@ -9,28 +9,30 @@ const Letter = styled.button`
   justify-content: center;
   font-family: "Quicksand";
   padding: 0.2rem;
-
-  background-color: pink;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  border: 2px dashed;
-  border-color: pink;
-  border-radius: 10px;
-  background-clip: content-box;
+  ${({ color = chroma("#63A35B") }) =>
+    css`
+      background-color: ${color};
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      border: 2px dashed;
+      border-color: ${color};
+      border-radius: 10px;
+      background-clip: content-box;
+    `}
 `;
 
 export default function Letters({ addLetter, letter }) {
   const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (letter) => {
     setClicked(true);
     addLetter(letter);
   };
 
   return (
     <>
-      <Letter onClick={handleClick}>{letter}</Letter>
+      <Letter onClick={() => handleClick(letter)}>{letter}</Letter>
     </>
   );
 }
