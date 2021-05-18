@@ -1,6 +1,6 @@
 import sendRequest from './send-request';
 
-const BASE_URL = '/api/kid';
+const BASE_URL = '/api/kids';
 
 export function getAll() {
   return sendRequest(BASE_URL);
@@ -11,7 +11,6 @@ export function getOne(kidID) {
 }
 
 export function create(newkidData) {
-  console.log('>>>NEW KID DATA<<<', newkidData);
   return sendRequest(BASE_URL, 'POST', newkidData);
 }
 

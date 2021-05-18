@@ -1,7 +1,8 @@
 const Kid = require('../../models/kid');
 
 module.exports = {
-  create
+  create,
+  index
 };
 
 async function create(req, res) {
@@ -10,3 +11,9 @@ async function create(req, res) {
   res.json(newKid);
 }
 
+async function index(req, res) {
+  console.log("req.user: ", req.user);
+  // const kids = await Kid.find();
+  const kids = await Kid.find({user: req.user._id});
+  res.json(kids);
+}

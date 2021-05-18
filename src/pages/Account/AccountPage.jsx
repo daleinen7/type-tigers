@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import * as kidApi from '../../utilities/kids-api';
 
 export default function AccountPage() {
 
+  const[kids, setKids] = useState([]);
   const[formData, setFormData] = useState({name: '', level: 0});
 
   function handleSubmit(evt) {
@@ -12,6 +13,15 @@ export default function AccountPage() {
 
   function handleChange(evt) {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  }
+
+  useEffect(() => {
+    getKids();
+  }, []);
+  
+  async function getKids() {
+    const allKids = await kidApi.getAll();
+    setKids(allKids);
   }
 
   return (
