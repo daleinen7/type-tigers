@@ -13,7 +13,6 @@ export default function App() {
 
   return (
     <main className="App">
-      {user ? (
         <>
           <h1>Type Tigers</h1>
           <NavBar user={user} setUser={setUser} />
@@ -21,18 +20,15 @@ export default function App() {
             <Route path="/game">
               <Game />
             </Route>
-            <Route path="/orders/new">
-              <NewOrderPage />
+            <Route to="/auth">
+              {!user 
+              ? <AuthPage setUser={setUser} />
+              : <Redirect to="/game"/>
+              }     
             </Route>
-            <Route path="/orders">
-              <OrderHistoryPage />
-            </Route>
-            <Redirect to="/orders" />
+            <Redirect to="/game" />
           </Switch>
         </>
-      ) : (
-        <AuthPage setUser={setUser} />
-      )}
     </main>
   );
 }
