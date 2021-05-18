@@ -4,7 +4,8 @@ import UserAnswer from "../../components/UserAnswer";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  background: gray;
+  background: #FFFFFF;
+  border-radius: 5px;
 `;
 
 export default function Game() {
@@ -19,7 +20,7 @@ export default function Game() {
 
   return (
     <StyledDiv>
-      <h1>Game</h1>
+      <h1>Spell the word you see below</h1>
       {/* <Picture/> */}
       <FlashWord
         flashWord={flashWord}

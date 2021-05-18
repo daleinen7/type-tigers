@@ -3,11 +3,38 @@ import update from "immutability-helper";
 import styled, { css } from "styled-components";
 import chroma from "chroma-js";
 
+const Game = styled.div`
+  
+  background: white;
+  font-family: 'Quicksand';
+  justify-content: center;
+  padding: .7rem;
+`;
+const Button = styled.button`
+  margin: 1vmin;
+  font-family: 'Quicksand';
+  padding: 1vmin;
+  color: var(--white);
+  background-color: #E6964B;
+  font-size: 3vmin;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border: .1vmin solid var(--tan-2);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+`
 const LetterDiv = styled.div`
   margin: 5px;
-  background: white;
+  background: gray;
+  color: white;
   height: 50px;
-  width: 30px;
+  width: 50px;
+  font-size: 24px;
+  justify-content: center;
+  padding: .7rem;
+  border-radius: 5px;
 `;
 const Grid = styled.div`
   display: grid;
@@ -15,6 +42,7 @@ const Grid = styled.div`
   grid-template-rows: 70px 70px;
   grid-gap: 15px;
   justify-content: center;
+  background-color: white;
 `;
 const Letter = styled.button`
   
@@ -130,13 +158,13 @@ export default function Answer({ compareAnswer, flashWord }) {
   }, [flashWord]);
 
   return (
-    <>
+    <Game>
       <div style={{ display: "flex", justifyContent: "center" }}>
         {clickedLetters?.map((letter, index) => {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
         })}
       </div>
-      <button onClick={removeLetter}>Backspace</button>
+      <Button onClick={removeLetter}>Backspace</Button>
       <Grid>
         {selectableLetters?.map((letter, index) => {
           return (
@@ -146,7 +174,7 @@ export default function Answer({ compareAnswer, flashWord }) {
           );
         })}
       </Grid>
-      <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
-    </>
+      <Button onClick={() => compareAnswer(clickedLetters)}>Submit</Button>
+    </Game>
   );
 }
