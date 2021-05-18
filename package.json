@@ -7,8 +7,10 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "bcrypt": "^5.0.0",
+    "chroma-js": "^2.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "immutability-helper": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
     "morgan": "^1.10.0",
@@ -17,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "serve-favicon": "^2.5.0",
+    "styled-components": "^5.3.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
