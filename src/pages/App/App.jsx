@@ -6,6 +6,7 @@ import AuthPage from "../AuthPage/AuthPage";
 import Game from "../Game";
 import Dashboard from "../Dashboard/Dashboard";
 import Practice from "../Practice/Practice";
+import Account from "../Account/AccountPage";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Main = styled.div`
@@ -27,13 +28,10 @@ export default function App() {
             <Route path="/game">
               <Game />
             </Route>
-            <Route path="/dashboard">
-              <Dashboard />
+            <Route path="/account">
+              <Account />
             </Route>
-            <Route path="/practice">
-              <Practice />
-            </Route>
-            <Redirect to="/orders" />
+            <Redirect to="/account" />
           </Switch>
         </>
       ) : (

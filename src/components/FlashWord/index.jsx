@@ -9,16 +9,13 @@ const Game = styled.div`
   font-size: 36px;
 `;
 
-export default function FlashWord({ flashWord, setFlashWord, testArr }) {
-  const [wordTimer, setWordTimer] = useState(false);
-
+export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
   useEffect(() => {
-    setFlashWord(testArr[0]);
     const timer = setTimeout(() => {
       setWordTimer(true);
     }, 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [flashWord]);
 
   return (
     <Game>

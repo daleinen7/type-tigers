@@ -30,11 +30,9 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/practice">Practice</NavLink>
+      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/game">Game</NavLink>
       &nbsp; | &nbsp;
-      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/game">Game</NavLink>
-      &nbsp; | &nbsp;
-      <NavLink exact activeStyle={{backgroundColor: '#FAD451'}} to="/account">Dashboard</NavLink>
+      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/account">Account</NavLink>
       &nbsp; | &nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>

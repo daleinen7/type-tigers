@@ -1,30 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 import update from "immutability-helper";
 import styled, { css } from "styled-components";
-import chroma from "chroma-js";
+
+import Letters from "../Letters";
 
 const Game = styled.div`
-  
   background: white;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
   justify-content: center;
-  padding: .7rem;
+  padding: 0.7rem;
 `;
 const Button = styled.button`
   margin: 1vmin;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
   padding: 1vmin;
   color: var(--white);
-  background-color: #E6964B;
+  background-color: #e6964b;
   font-size: 3vmin;
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  border: .1vmin solid var(--tan-2);
+  border: 0.1vmin solid var(--tan-2);
   border-radius: 10px;
   outline: none;
   cursor: pointer;
-`
+`;
 const LetterDiv = styled.div`
   margin: 5px;
   background: gray;
@@ -33,9 +33,10 @@ const LetterDiv = styled.div`
   width: 50px;
   font-size: 24px;
   justify-content: center;
-  padding: .7rem;
+  padding: 0.7rem;
   border-radius: 5px;
 `;
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 70px);
@@ -44,23 +45,7 @@ const Grid = styled.div`
   justify-content: center;
   background-color: white;
 `;
-const Letter = styled.button`
-  
-display: flex;
-  justify-content: center;
-  font-family: 'Quicksand';
-  padding: .2rem;
-  ${({ color = chroma('#63A35B') }) =>
-    css `background-color: ${color};
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  border: 2px dashed; 
-  border-color: ${color};
-  border-radius: 10px;
-  background-clip: content-box;
-  `}
-  `;
+
 const alphabet = [
   "A",
   "B",
@@ -90,12 +75,20 @@ const alphabet = [
   "Z",
 ];
 
-export default function Answer({ compareAnswer, flashWord }) {
+export default function Answer({
+  compareAnswer,
+  flashWord,
+  correct,
+  handleNextWord,
+  counter,
+  clicked,
+  setClicked,
+  letterCount,
+  setLetterCount,
+}) {
   // States and refs
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
-  const [letterCount, setLetterCount] = useState(0);
-  const counter = useRef(letterCount);
 
   // Generating selectable letters
   const makeSelectableLetters = (word) => {
@@ -125,13 +118,14 @@ export default function Answer({ compareAnswer, flashWord }) {
   };
 
   // Function for selecting letters into blanks
-  const addLetter = (event) => {
+  const addLetter = (letter, key) => {
     if (counter.current < flashWord.length) {
       setClickedLetters(
         update(clickedLetters, {
-          [counter.current]: { $set: event.target.innerText },
+          [counter.current]: { $set: letter },
         })
       );
+      setClicked(update(clicked, { $push: [key] }));
       const newCounter = letterCount + 1;
       setLetterCount(newCounter);
       counter.current = newCounter;
@@ -149,32 +143,43 @@ export default function Answer({ compareAnswer, flashWord }) {
           [counter.current]: { $set: "" },
         })
       );
+      setClicked(update(clicked, { $splice: [[clicked.length - 1, 1]] }));
     }
   };
 
+  // Make blank letters and generate selectable letters on load
   useEffect(() => {
     makeBlankLetters(flashWord);
     makeSelectableLetters(flashWord);
   }, [flashWord]);
 
   return (
-    <Game>
+    <>
       <div style={{ display: "flex", justifyContent: "center" }}>
         {clickedLetters?.map((letter, index) => {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
         })}
+        {correct && <div>✓</div>}
       </div>
-      <Button onClick={removeLetter}>Backspace</Button>
+      {!correct && <button onClick={removeLetter}>Backspace</button>}
       <Grid>
         {selectableLetters?.map((letter, index) => {
           return (
-            <Letter onClick={addLetter} key={index}>
-              {letter}
-            </Letter>
+            <Letters
+              clicked={clicked}
+              key={index}
+              index={index}
+              addLetter={addLetter}
+              letter={letter}
+            />
           );
         })}
       </Grid>
-      <Button onClick={() => compareAnswer(clickedLetters)}>Submit</Button>
-    </Game>
+      {correct ? (
+        <button onClick={handleNextWord}>Next</button>
+      ) : (
+        <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
+      )}
+    </>
   );
 }
