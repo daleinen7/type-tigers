@@ -1,12 +1,23 @@
 import { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
 import update from "immutability-helper";
+import styled, { css } from "styled-components";
+import chroma from "chroma-js";
+
+import Letters from "../Letters";
 
 const LetterDiv = styled.div`
   margin: 5px;
   background: white;
   height: 50px;
   width: 30px;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 70px);
+  grid-template-rows: 70px 70px;
+  grid-gap: 15px;
+  justify-content: center;
 `;
 
 const alphabet = [
@@ -73,11 +84,11 @@ export default function Answer({ compareAnswer, flashWord }) {
   };
 
   // Function for selecting letters into blanks
-  const addLetter = (event) => {
+  const addLetter = (letter) => {
     if (counter.current < flashWord.length) {
       setClickedLetters(
         update(clickedLetters, {
-          [counter.current]: { $set: event.target.innerText },
+          [counter.current]: { $set: letter },
         })
       );
       const newCounter = letterCount + 1;
@@ -114,15 +125,11 @@ export default function Answer({ compareAnswer, flashWord }) {
         })}
       </div>
       <button onClick={removeLetter}>Backspace</button>
-      <div>
+      <Grid>
         {selectableLetters?.map((letter, index) => {
-          return (
-            <button onClick={addLetter} key={index}>
-              {letter}
-            </button>
-          );
+          return <Letters key={index} addLetter={addLetter} letter={letter} />;
         })}
-      </div>
+      </Grid>
       <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
     </>
   );
