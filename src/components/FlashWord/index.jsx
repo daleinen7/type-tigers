@@ -11,7 +11,7 @@ export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
   return (
     <>
       <p style={{ color: "red", visibility: !wordTimer ? "" : "hidden" }}>
-        {flashWord.toUpperCase()}
+        {flashWord}
       </p>
     </>
   );
