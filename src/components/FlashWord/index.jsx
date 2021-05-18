@@ -17,7 +17,7 @@ export default function FlashWord({ flashWord, setFlashWord, testArr }) {
 
   return (
     <>
-      <p className={`flash-word ${!setWordTimer ? "" : "hidden"}`}>
+      <p style={{ color: "red", visibility: !wordTimer ? "" : "hidden" }}>
         {flashWord}
       </p>
     </>
