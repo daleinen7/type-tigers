@@ -100,6 +100,7 @@ export default function Answer({ compareAnswer, flashWord }) {
     }
   };
 
+  // Make blank letters and generate selectable letters on load
   useEffect(() => {
     makeBlankLetters(flashWord);
     makeSelectableLetters(flashWord);
