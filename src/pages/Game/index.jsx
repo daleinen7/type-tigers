@@ -5,6 +5,7 @@ import update from "immutability-helper";
 import FlashWord from "../../components/FlashWord";
 import UserAnswer from "../../components/UserAnswer";
 import ErrorWords from "../../components/ErrorWords";
+import { set } from "mongoose";
 
 const StyledDiv = styled.div`
   background: gray;
@@ -14,10 +15,11 @@ export default function Game() {
   const [flashWord, setFlashWord] = useState("");
   const [errorWords, setErrorWords] = useState([]);
   const testArr = ["five", "two", "three", "four", "five"];
+  const [correct, setCorrect] = useState(false);
 
   const compareAnswer = (word) => {
     if (flashWord.toUpperCase() === word.join("")) {
-      console.log("CORRECT");
+      setCorrect(true);
     } else {
       let error = [];
       for (let letter in flashWord.split("")) {
@@ -27,7 +29,14 @@ export default function Game() {
           error.push([word[letter], false]);
         }
       }
-      setErrorWords(update(errorWords, { $push: [error] }));
+      if (errorWords.length < 4) {
+        setErrorWords(update(errorWords, { $push: [error] }));
+      } else {
+        let array = [...errorWords];
+        array.shift();
+        array.push(error);
+        setErrorWords(array);
+      }
     }
   };
 
@@ -41,7 +50,11 @@ export default function Game() {
         testArr={testArr}
       />
       <ErrorWords errorWords={errorWords} />
-      <UserAnswer flashWord={flashWord} compareAnswer={compareAnswer} />
+      <UserAnswer
+        flashWord={flashWord}
+        compareAnswer={compareAnswer}
+        correct={correct}
+      />
     </StyledDiv>
   );
 }
