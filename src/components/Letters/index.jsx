@@ -13,7 +13,7 @@ display: flex;
   padding: .2rem;
   ${({ color = chroma.random() }) =>
     css `background-color: ${color};
-  color: ${chroma.contrast(color, "black") >= 4 ? "black" : "white"};
+  color: white;
   font-size: 2em;
   font-weight: bold;
   border: 2px dashed; 
