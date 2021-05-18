@@ -1,6 +1,27 @@
 import { Component } from 'react';
 import { signUp } from '../../utilities/users-service';
-
+import styled from "styled-components";
+const SignUp = styled.div`
+  color: black;
+  background: #FCF3E5;
+  font-family: 'Quicksand';
+  justify-content: center;
+`;
+const Button = styled.button`
+  margin: 1vmin;
+  font-family: 'Quicksand';
+  padding: 1vmin;
+  color: var(--white);
+  background-color: #7566E5;
+  font-size: 3vmin;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border: .1vmin solid var(--tan-2);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+`
 export default class SignUpForm extends Component {
   state = {
     name: '',
@@ -34,7 +55,7 @@ export default class SignUpForm extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
+      <SignUp>
         <div className="form-container">
           <form autoComplete="off" onSubmit={this.handleSubmit}>
             <label>Name</label>
@@ -45,11 +66,11 @@ export default class SignUpForm extends Component {
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
             <label>Confirm</label>
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>SIGN UP</button>
+            <Button type="submit" disabled={disable}>SIGN UP</Button>
           </form>
         </div>
         <p className="error-message">&nbsp;{this.state.error}</p>
-      </div>
+      </SignUp>
     );
   }
 }

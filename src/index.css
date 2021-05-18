@@ -69,8 +69,8 @@ code {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--tan-1);
-  color: var(--text-dark);
+  background-color: white;
+  color: black;
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
   padding: .6vmin;
@@ -110,7 +110,7 @@ input {
   border-radius: .5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
-  outline: none;
+  outline: black;
 }
 
 input:focus {

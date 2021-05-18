@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+const Game = styled.div`
+  color: black;
+  background: white;
+  font-family: 'Quicksand';
+  justify-content: center;
+  padding: .7rem;
+  font-size: 36px;
+`;
 
 export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
   useEffect(() => {
@@ -9,10 +18,10 @@ export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
   }, [flashWord]);
 
   return (
-    <>
-      <p style={{ color: "red", visibility: !wordTimer ? "" : "hidden" }}>
+    <Game>
+      <p style={{ visibility: !wordTimer ? "" : "hidden" }}>
         {flashWord}
       </p>
-    </>
+    </Game>
   );
 }

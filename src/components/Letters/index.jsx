@@ -2,8 +2,6 @@ import { React, useState } from "react";
 import styled, { css } from "styled-components";
 import chroma from "chroma-js";
 
-import "./styles.css";
-
 const Letter = styled.button`
   display: flex;
   justify-content: center;

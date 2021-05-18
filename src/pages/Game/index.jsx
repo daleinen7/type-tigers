@@ -5,10 +5,10 @@ import update from "immutability-helper";
 import FlashWord from "../../components/FlashWord";
 import UserAnswer from "../../components/UserAnswer";
 import ErrorWords from "../../components/ErrorWords";
-import { set } from "mongoose";
 
 const StyledDiv = styled.div`
-  background: gray;
+  background: #ffffff;
+  border-radius: 5px;
 `;
 
 export default function Game() {
@@ -65,7 +65,7 @@ export default function Game() {
 
   return (
     <StyledDiv>
-      <h1>Game</h1>
+      <h1>Spell the word you see below</h1>
       {/* <Picture/> */}
       <FlashWord
         flashWord={flashWord}

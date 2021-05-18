@@ -4,11 +4,37 @@ import styled, { css } from "styled-components";
 
 import Letters from "../Letters";
 
+const Game = styled.div`
+  background: white;
+  font-family: "Quicksand";
+  justify-content: center;
+  padding: 0.7rem;
+`;
+const Button = styled.button`
+  margin: 1vmin;
+  font-family: "Quicksand";
+  padding: 1vmin;
+  color: var(--white);
+  background-color: #e6964b;
+  font-size: 3vmin;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border: 0.1vmin solid var(--tan-2);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+`;
 const LetterDiv = styled.div`
   margin: 5px;
-  background: white;
+  background: gray;
+  color: white;
   height: 50px;
-  width: 30px;
+  width: 50px;
+  font-size: 24px;
+  justify-content: center;
+  padding: 0.7rem;
+  border-radius: 5px;
 `;
 
 const Grid = styled.div`
@@ -17,6 +43,7 @@ const Grid = styled.div`
   grid-template-rows: 70px 70px;
   grid-gap: 15px;
   justify-content: center;
+  background-color: white;
 `;
 
 const alphabet = [
