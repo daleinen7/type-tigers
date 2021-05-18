@@ -38,12 +38,14 @@ const alphabet = [
   "Z",
 ];
 
-export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
+export default function Answer({ compareAnswer, flashWord }) {
+  // States and refs
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
   const [letterCount, setLetterCount] = useState(0);
   const counter = useRef(letterCount);
 
+  // Generating selectable letters
   const makeSelectableLetters = (word) => {
     let generated = word.toUpperCase().split("");
     for (let i = generated.length; i < 10; i++) {
@@ -53,6 +55,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
     setSelectableLetter(generated);
   };
 
+  // Helper function for generated selectable letters
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -60,6 +63,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
     }
   };
 
+  // Generating blank letters
   const makeBlankLetters = (word) => {
     let blankLetters = [];
     for (let i = 0; i < word.length; i++) {
@@ -68,6 +72,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
     setClickedLetters(blankLetters);
   };
 
+  // Function for selecting letters into blanks
   const addLetter = (event) => {
     if (counter.current < flashWord.length) {
       setClickedLetters(
@@ -81,6 +86,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
     }
   };
 
+  // Function for backspace
   const removeLetter = () => {
     if (counter.current > 0) {
       const newCounter = letterCount - 1;
@@ -116,6 +122,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
           );
         })}
       </div>
+      <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
     </>
   );
 }
