@@ -9,10 +9,56 @@ const LetterDiv = styled.div`
   width: 30px;
 `;
 
+const alphabet = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+
 export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
   const [clickedLetters, setClickedLetters] = useState([]);
+  const [selectableLetters, setSelectableLetter] = useState(null);
   const [letterCount, setLetterCount] = useState(0);
   const counter = useRef(letterCount);
+
+  const makeSelectableLetters = (word) => {
+    let generated = word.toUpperCase().split("");
+    for (let i = generated.length; i < 10; i++) {
+      generated.push(alphabet[Math.floor(Math.random() * alphabet.length)]);
+    }
+    shuffleArray(generated);
+    setSelectableLetter(generated);
+  };
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
 
   const makeBlankLetters = (word) => {
     let blankLetters = [];
@@ -50,6 +96,7 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
 
   useEffect(() => {
     makeBlankLetters(flashWord);
+    makeSelectableLetters(flashWord);
   }, [flashWord]);
 
   return (
@@ -60,16 +107,15 @@ export default function Answer({ userAnswer, setUserAnswer, flashWord }) {
         })}
       </div>
       <button onClick={removeLetter}>Backspace</button>
-      <button onClick={addLetter}>p</button>
-      <button onClick={addLetter}>b</button>
-      <button onClick={addLetter}>c</button>
-      <button onClick={addLetter}>d</button>
-      <button onClick={addLetter}>e</button>
-      <button onClick={addLetter}>f</button>
-      <button onClick={addLetter}>g</button>
-      <button onClick={addLetter}>h</button>
-      <button onClick={addLetter}>i</button>
-      <button onClick={addLetter}>l</button>
+      <div>
+        {selectableLetters?.map((letter, index) => {
+          return (
+            <button onClick={addLetter} key={index}>
+              {letter}
+            </button>
+          );
+        })}
+      </div>
     </>
   );
 }
