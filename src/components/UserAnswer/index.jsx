@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import update from "immutability-helper";
 import styled, { css } from "styled-components";
-import chroma from "chroma-js";
 
 import Letters from "../Letters";
 
