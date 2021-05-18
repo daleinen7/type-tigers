@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 
 export default function FlashWord({ flashWord, setFlashWord, testArr }) {
   const [wordTimer, setWordTimer] = useState(false);
-  // Display word
-  // Make word fade
-  // Handle submit
-  // Handle change
 
   useEffect(() => {
     setFlashWord(testArr[0]);
@@ -17,7 +13,7 @@ export default function FlashWord({ flashWord, setFlashWord, testArr }) {
 
   return (
     <>
-      <p className={`flash-word ${!setWordTimer ? "" : "hidden"}`}>
+      <p style={{ color: "red", visibility: !wordTimer ? "" : "hidden" }}>
         {flashWord}
       </p>
     </>
