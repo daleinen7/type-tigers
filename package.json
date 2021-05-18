@@ -10,6 +10,7 @@
     "chroma-js": "^2.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "immutability-helper": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
     "morgan": "^1.10.0",
