@@ -12,7 +12,6 @@ const Letter = styled.button`
   ${({ color = chroma("#63A35B") }) =>
     css`
       background-color: ${color};
-      color: white;
       font-size: 2rem;
       font-weight: bold;
       border: 2px dashed;
@@ -22,17 +21,21 @@ const Letter = styled.button`
     `}
 `;
 
-export default function Letters({ addLetter, letter }) {
-  const [clicked, setClicked] = useState(false);
-
-  const handleClick = (letter) => {
-    setClicked(true);
-    addLetter(letter);
+export default function Letters({ addLetter, letter, index, clicked }) {
+  const handleClick = (letter, index) => {
+    addLetter(letter, index);
   };
 
   return (
     <>
-      <Letter onClick={() => handleClick(letter)}>{letter}</Letter>
+      <Letter
+        style={{
+          pointerEvents: clicked.includes(index) ? "none" : "auto",
+        }}
+        onClick={() => handleClick(letter, index)}
+      >
+        {letter}
+      </Letter>
     </>
   );
 }

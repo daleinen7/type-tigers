@@ -54,6 +54,7 @@ export default function Answer({ compareAnswer, flashWord }) {
   const [clickedLetters, setClickedLetters] = useState([]);
   const [selectableLetters, setSelectableLetter] = useState(null);
   const [letterCount, setLetterCount] = useState(0);
+  const [clicked, setClicked] = useState([]);
   const counter = useRef(letterCount);
 
   // Generating selectable letters
@@ -84,13 +85,14 @@ export default function Answer({ compareAnswer, flashWord }) {
   };
 
   // Function for selecting letters into blanks
-  const addLetter = (letter) => {
+  const addLetter = (letter, key) => {
     if (counter.current < flashWord.length) {
       setClickedLetters(
         update(clickedLetters, {
           [counter.current]: { $set: letter },
         })
       );
+      setClicked(update(clicked, { $push: [key] }));
       const newCounter = letterCount + 1;
       setLetterCount(newCounter);
       counter.current = newCounter;
@@ -108,6 +110,7 @@ export default function Answer({ compareAnswer, flashWord }) {
           [counter.current]: { $set: "" },
         })
       );
+      setClicked(update(clicked, { $splice: [[clicked.length - 1, 1]] }));
     }
   };
 
@@ -127,7 +130,15 @@ export default function Answer({ compareAnswer, flashWord }) {
       <button onClick={removeLetter}>Backspace</button>
       <Grid>
         {selectableLetters?.map((letter, index) => {
-          return <Letters key={index} addLetter={addLetter} letter={letter} />;
+          return (
+            <Letters
+              clicked={clicked}
+              key={index}
+              index={index}
+              addLetter={addLetter}
+              letter={letter}
+            />
+          );
         })}
       </Grid>
       <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
