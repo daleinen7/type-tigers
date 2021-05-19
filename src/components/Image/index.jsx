@@ -11,7 +11,7 @@ const Div = styled.div`
 
 const Image = ({ image, flashWord }) => {
   return (
-    <Div style={{ height: flashWord ? "" : "550px" }}>
+    <Div style={{ height: flashWord ? "" : "500px" }}>
       <img
         style={{ height: flashWord ? "150px" : "400px" }}
         src={image}

@@ -62,37 +62,54 @@ const CoinNum = styled.div`
   font-size: 2rem;
 `;
 
-export default function Game({ kids, setKids, activeKid, getKids }) {
+export default function Game({ kids, setKids, activeKid, story }) {
   const [flashWord, setFlashWord] = useState("");
   const [image, setImage] = useState("");
   const [sentence, setSentence] = useState("");
   const [errorWords, setErrorWords] = useState([]);
-  const testArr = ["five", "two", "three"];
+  // const testArr = ["five", "two", "three"];
   const testLevel = [
+    {
+      word: null,
+      sentence:
+        "Oh no, Brian ran away! Now Bobby the Bear needs to find clues to find his friend!",
+      image:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440084/Group_347_phosos.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440082/Group_355_uaadym.svg",
+    },
     {
       word: "Small",
       sentence: "Brian the bunny is very _____ in size and hard to find!",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440084/Group_347_phosos.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_356_uzplr7.svg",
     },
     {
       word: "Long",
       sentence: "Brian the bunny has very ____ fluffy ears.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621383598/hugo-283_zczt8p.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_357_eq2aar.svg",
     },
     {
       word: "Warm",
       sentence: "Brian likes ____ places and went to the desert.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621383752/hugo-211_btmjoj.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440080/Group_358_n1ken6.svg",
     },
     {
       word: null,
       sentence:
-        "After finding the clues, Bobby Bear went to the desert to find Mr. Pickles.",
+        "After finding the clues, Bobby Bear went to the desert to find Brian",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_349_yhyt43.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440080/Group_359_gg2tcl.svg",
     },
     {
       word: "Drink",
@@ -100,6 +117,8 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
         "When Brian goes to the desert, he likes to _____ water from cacti.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440080/Group_350_nqsoml.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_360_u2chuj.png",
     },
     {
       word: "Cold",
@@ -107,12 +126,16 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
         "It was important to find Brian quickly because the desert gets really ____ at night.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440084/Group_351_ioyfyn.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_361_qytjkc.svg",
     },
     {
       word: "Group",
       sentence: "Brian might be in a _____, bunnies love their families!",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440081/Group_352_eqamuy.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440080/Group_362_oqiccw.svg",
     },
     {
       word: null,
@@ -120,6 +143,8 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
         "After finding some cacti and Brian's friends, Bobby Bear found Brian and they went back home together.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440083/Group_353_u3umos.svg",
+      progBar:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_363_q2rfte.svg",
     },
   ];
 
@@ -172,7 +197,7 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
       const newCounter = arrCount + 1;
       setArrCount(newCounter);
       arrCounter.current = newCounter;
-      setFlashWord(testArr[arrCounter.current]);
+      setFlashWord(testLevel[arrCounter.current]?.word);
       setCorrect(false);
       setErrorWords([]);
       setClicked([]);
@@ -187,7 +212,7 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
       const newCounter = arrCount - 1;
       setArrCount(newCounter);
       arrCounter.current = newCounter;
-      setFlashWord(testArr[arrCounter.current]);
+      setFlashWord(testLevel[arrCounter.current]?.word);
       setCorrect(false);
       setErrorWords([]);
       setClicked([]);
@@ -198,10 +223,10 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
   };
 
   useEffect(() => {
-    setFlashWord(testLevel[arrCounter.current].word);
-    setImage(testLevel[arrCounter.current].image);
-    setSentence(testLevel[arrCounter.current].sentence);
-  });
+    setFlashWord(testLevel[arrCounter.current]?.word);
+    setImage(testLevel[arrCounter.current]?.image);
+    setSentence(testLevel[arrCounter.current]?.sentence);
+  }, []);
 
   return (
     <StyledDiv>
@@ -221,12 +246,11 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
       <FlashWord
         flashWord={flashWord}
         setFlashWord={setFlashWord}
-        testArr={testArr}
         wordTimer={wordTimer}
         setWordTimer={setWordTimer}
       />
       <Sentence sentence={sentence} />
-      <div style={{ content: "", height: "20px", marginBottom: "40px" }}>
+      <div style={{ content: "", height: "20px", marginBottom: "0px" }}>
         <ErrorWords errorWords={errorWords} />
       </div>
       {flashWord ? (
@@ -260,6 +284,22 @@ export default function Game({ kids, setKids, activeKid, getKids }) {
           src="https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621385779/hugo-264_zlr6kn.svg"
         />
       </CoinDiv>
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          bottom: "50px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          style={{
+            height: "100px",
+          }}
+          src={`${testLevel[arrCounter.current].progBar}`}
+        />
+      </div>
     </StyledDiv>
   );
 }

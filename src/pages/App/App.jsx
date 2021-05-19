@@ -9,6 +9,7 @@ import Home from "../Home/Home";
 import NavBar from "../../components/NavBar/NavBar";
 import * as kidApi from "../../utilities/kids-api";
 import styled from "styled-components";
+import axios from "axios";
 const Main = styled.div`
   color: black;
   background: #fcf3e5;
@@ -19,10 +20,22 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [kids, setKids] = useState([]);
   const [activeKid, setActiveKid] = useState(kids.length ? 0 : 0);
+  const [story, setStory] = useState();
 
   useEffect(() => {
     getKids();
+    getStories();
   }, []);
+
+  async function getStories() {
+    axios({
+      method: "get",
+      url: `http://localhost:3001/api/stories/0`,
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }).then((response) => setStory(response.data[0].words));
+  }
 
   async function getKids() {
     const allKids = await kidApi.getAll();
@@ -44,6 +57,7 @@ export default function App() {
                 getKids={getKids}
                 setKids={setKids}
                 activeKid={activeKid}
+                story={story}
               />
             </Route>
             <Route path="/dashboard">
