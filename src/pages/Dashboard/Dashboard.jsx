@@ -1,7 +1,7 @@
 import SideBar from "../../components/SideBar/SideBar";
 import Profile from "../../components/Profile/Profile";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import bear from "../../images/bear.svg";
 import * as kidApi from "../../utilities/kids-api";
 import styled from "styled-components";
@@ -78,15 +78,6 @@ export default function Dashboard({ kids, setKids }) {
 
   function handleChange(evt) {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
-  }
-
-  useEffect(() => {
-    getKids();
-  }, []);
-
-  async function getKids() {
-    const allKids = await kidApi.getAll();
-    setKids(allKids);
   }
 
   return (
