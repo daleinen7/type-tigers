@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 import React, { useState } from 'react';
 import './NavBar.css'
+import Logo from './hugo-284.png'
 
 export default function NavBar({ user, setUser }) {
   const [click, setClick] = useState(false);
@@ -15,7 +16,7 @@ export default function NavBar({ user, setUser }) {
   return (
     <>
     <nav className='navbar'>
-      <Link to='/home' className='navbar-logo'>Bearcabulary</Link>
+      <Link to='/home' className='navbar-logo'><span class="logo"> <a href="/"> <img src={Logo} height="23" width="18" alt="Hugo logo" /></a> </span>Bearcabulary</Link>
       <div className='menu-icon' onClick={handleClick}>
         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
       </div>
