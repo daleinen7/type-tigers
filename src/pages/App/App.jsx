@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
@@ -6,6 +6,7 @@ import AuthPage from "../AuthPage/AuthPage";
 import Game from "../Game";
 import Dashboard from "../Dashboard/Dashboard";
 import NavBar from "../../components/NavBar/NavBar";
+import * as kidApi from "../../utilities/kids-api";
 import styled from "styled-components";
 const Main = styled.div`
   color: black;
@@ -17,6 +18,15 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [kids, setKids] = useState([]);
   const [activeKid, setActiveKid] = useState(kids.length ? kids[0] : null);
+
+  useEffect(() => {
+    getKids();
+  }, []);
+
+  async function getKids() {
+    const allKids = await kidApi.getAll();
+    setKids(allKids);
+  }
 
   return (
     <Main className="App">
