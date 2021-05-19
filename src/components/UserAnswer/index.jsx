@@ -4,43 +4,25 @@ import styled, { css } from "styled-components";
 
 import Letters from "../Letters";
 
-const Game = styled.div`
-  background: white;
-  font-family: "Quicksand";
-  justify-content: center;
-  padding: 0.7rem;
-`;
-const Button = styled.button`
-  margin: 1vmin;
-  font-family: "Quicksand";
-  padding: 1vmin;
-  color: var(--white);
-  background-color: #e6964b;
-  font-size: 3vmin;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  border: 0.1vmin solid var(--tan-2);
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-`;
 const LetterDiv = styled.div`
-  margin: 5px;
-  background: gray;
-  color: white;
-  height: 50px;
-  width: 50px;
-  font-size: 24px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  margin: 5px 10px 5px 10px;
+  border: 3px solid #4f83ff;
+  color: #4f83ff;
+  height: 75px;
+  width: 75px;
+  font-size: 50px;
   justify-content: center;
   padding: 0.7rem;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 70px);
-  grid-template-rows: 70px 70px;
+  grid-template-columns: repeat(5, 80px);
+  grid-template-rows: 80px 80px;
   grid-gap: 15px;
   justify-content: center;
   background-color: white;
@@ -74,6 +56,11 @@ const alphabet = [
   "Y",
   "Z",
 ];
+
+const FlexDiv = styled.div`
+  display: grid;
+  grid-template-columns: 500px 20px;
+`;
 
 export default function Answer({
   compareAnswer,
@@ -155,32 +142,41 @@ export default function Answer({
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+      >
         {clickedLetters?.map((letter, index) => {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
         })}
         {correct && <div>✓</div>}
       </div>
-
-      <Grid>
-        {selectableLetters?.map((letter, index) => {
-          return (
-            <Letters
-              clicked={clicked}
-              key={index}
-              index={index}
-              addLetter={addLetter}
-              letter={letter}
-            />
-          );
-        })}
-      </Grid>
-      {!correct && <button onClick={removeLetter}>Backspace</button>}
-      {correct ? (
-        <button onClick={handleNextWord}>Next</button>
-      ) : (
-        <button onClick={() => compareAnswer(clickedLetters)}>Submit</button>
-      )}
+      <FlexDiv>
+        <div>
+          <Grid>
+            {selectableLetters?.map((letter, index) => {
+              return (
+                <Letters
+                  clicked={clicked}
+                  key={index}
+                  index={index}
+                  addLetter={addLetter}
+                  letter={letter}
+                />
+              );
+            })}
+          </Grid>
+        </div>
+        <div>
+          {!correct && <button onClick={removeLetter}>Backspace</button>}
+          {correct ? (
+            <button onClick={handleNextWord}>Next</button>
+          ) : (
+            <button onClick={() => compareAnswer(clickedLetters)}>
+              Submit
+            </button>
+          )}
+        </div>
+      </FlexDiv>
     </>
   );
 }

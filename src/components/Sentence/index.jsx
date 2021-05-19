@@ -1,9 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const SentenceDiv = styled.div`
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 40px;
+`;
 
 const Sentence = ({ sentence }) => {
   return (
     <>
-      <p>{sentence}</p>
+      <SentenceDiv>{sentence}</SentenceDiv>
     </>
   );
 };
