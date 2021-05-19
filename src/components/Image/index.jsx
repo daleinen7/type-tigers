@@ -1,10 +1,19 @@
 import React from "react";
+import styled from "styled-components";
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffd80a;
+  height: 200px;
+`;
 
 const Image = ({ image }) => {
   return (
-    <>
-      <img src={image} alt="test" width="200" />
-    </>
+    <Div>
+      <img src={image} alt="test" height="150px" />
+    </Div>
   );
 };
 
