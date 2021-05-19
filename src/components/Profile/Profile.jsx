@@ -1,3 +1,4 @@
+import piggie from '../../images/piggie.svg';
 import styled from 'styled-components';
 
 const StyledListItem = styled.li`
@@ -28,6 +29,9 @@ const StyledListItem = styled.li`
 export default function Profile({name, coins, level}) {
   return(
     <StyledListItem>
+      <div className="avatar">
+        <img src={piggie} alt="piggie" />
+      </div>
       <div className="player">
         <h2>{name}</h2>
         <p>pic goes here?</p>
