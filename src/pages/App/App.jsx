@@ -15,9 +15,9 @@ const Main = styled.div`
 `;
 export default function App() {
   const [user, setUser] = useState(getUser());
-  const[kids, setKids] = useState([]);
+  const [kids, setKids] = useState([]);
   const [activeKid, setActiveKid] = useState(kids.length ? kids[0] : null);
-  
+
   return (
     <Main className="App">
       {user ? (
@@ -28,7 +28,7 @@ export default function App() {
               <Game />
             </Route>
             <Route path="/dashboard">
-              <Dashboard kids={kids} setKids={setKids}/>
+              <Dashboard kids={kids} setKids={setKids} />
             </Route>
             <Redirect to="/dashboard" />
           </Switch>
