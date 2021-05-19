@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import './NavBar.css'
 import Logo from './hugo-284.png'
 
+
 export default function NavBar({ user, setUser }) {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -27,5 +28,6 @@ export default function NavBar({ user, setUser }) {
       <li className='nav-item'><Link to="" onClick={handleLogOut} className='nav-links-mobile'>Log Out</Link></li></ul>
       
     </nav> </>
+
   );
 }

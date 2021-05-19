@@ -10,12 +10,14 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Main = styled.div`
   color: black;
-  background: #FFFFFF;
-  font-family: 'Quicksand';
+  background: #fcf3e5;
+  font-family: "Quicksand";
   justify-content: center;
 `;
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [kids, setKids] = useState([]);
+  const [activeKid, setActiveKid] = useState(kids.length ? 0 : 0);
 
   return (
     <Main className="App">
@@ -27,10 +29,10 @@ export default function App() {
               <Home />
             </Route>
             <Route path="/game">
-              <Game />
+              <Game kids={kids} setKids={setKids} activeKid={activeKid} />
             </Route>
             <Route path="/dashboard">
-              <Dashboard />
+              <Dashboard kids={kids} setKids={setKids} />
             </Route>
             <Redirect to="/dashboard" />
           </Switch>
