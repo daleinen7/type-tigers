@@ -6,7 +6,6 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const kid = await Kid.findById(req.params.id);
-  const story = await Story.find({grade: kid.level});
+  const story = await Story.find({grade: req.params.id});
   res.json(story);
 }

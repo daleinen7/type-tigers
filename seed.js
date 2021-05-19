@@ -16,19 +16,19 @@ const Story = require('./models/story');
   await Story.deleteMany({});
   const categories = await Story.create([
     {name: 'TestStoryA', grade: 0, words: [
-      {word: 'TestWord1', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord2', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord3', sentence: 'This is a test.', image: 'n/a'}
+      {word: 'TestWord1', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord2', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord3', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'}
     ]},
     {name: 'TestStoryB', grade: 1, words: [
-      {word: 'TestWord4', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord5', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord6', sentence: 'This is a test.', image: 'n/a'}
+      {word: 'TestWord4', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord5', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord6', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'}
     ]},
     {name: 'TestStoryC', grade: 2, words: [
-      {word: 'TestWord7', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord8', sentence: 'This is a test.', image: 'n/a'},
-      {word: 'TestWord9', sentence: 'This is a test.', image: 'n/a'}
+      {word: 'TestWord7', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord8', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'},
+      {word: 'TestWord9', sentence: 'This is a test.', image: 'n/a', progBar: 'n/a'}
     ]},
   ]);
 
