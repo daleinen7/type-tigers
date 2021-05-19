@@ -20,11 +20,14 @@ const LetterDiv = styled.div`
 `;
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 80px);
-  grid-template-rows: 80px 80px;
-  grid-gap: 15px;
-  justify-content: center;
+  // display: grid;
+  // grid-template-columns: repeat(5, 80px);
+  // grid-template-rows: 80px 80px;
+  // grid-gap: 15px;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 15px;
+  justify-content: space-between;
   background-color: white;
 `;
 
@@ -58,8 +61,24 @@ const alphabet = [
 ];
 
 const FlexDiv = styled.div`
+  margin: 0 auto;
+  width: 700px;
   display: grid;
-  grid-template-columns: 500px 20px;
+  grid-template-columns: 500px 200px;
+  gap: 30px;
+`;
+
+const Button = styled.button`
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+  background-color: #4f83ff;
+  box-shadow: 3px 3px 0 #0f45c3;
+  height: 75px;
+  width: 150px;
+  padding: 0.5rem;
+  margin: 0;
+  border-radius: 10px;
 `;
 
 export default function Answer({
@@ -143,7 +162,11 @@ export default function Answer({
   return (
     <>
       <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "30px 0 30px 0",
+        }}
       >
         {clickedLetters?.map((letter, index) => {
           return <LetterDiv key={index}>{letter}</LetterDiv>;
@@ -166,14 +189,27 @@ export default function Answer({
             })}
           </Grid>
         </div>
-        <div>
-          {!correct && <button onClick={removeLetter}>Backspace</button>}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          {!correct && <Button onClick={removeLetter}>Backspace</Button>}
           {correct ? (
-            <button onClick={handleNextWord}>Next</button>
+            <Button onClick={handleNextWord}>Next</Button>
           ) : (
-            <button onClick={() => compareAnswer(clickedLetters)}>
+            <Button
+              style={{
+                color: "black",
+                backgroundColor: "#FFD80A",
+                boxShadow: "3px 3px 0 #F05220",
+              }}
+              onClick={() => compareAnswer(clickedLetters)}
+            >
               Submit
-            </button>
+            </Button>
           )}
         </div>
       </FlexDiv>
