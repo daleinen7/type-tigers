@@ -17,10 +17,8 @@ const Main = styled.div`
 `;
 export default function App() {
   const [user, setUser] = useState(getUser());
-
-  const [activeKid, setActiveKid] = useState('60a417844e7ac2828f9034af');
-
-
+  const[kids, setKids] = useState([]);
+  const [activeKid, setActiveKid] = useState(kids.length ? kids[0] : null);
   
   return (
     <Main className="App">
@@ -32,7 +30,7 @@ export default function App() {
               <Game />
             </Route>
             <Route path="/account">
-              <Account />
+              <Account kids={kids} setKids={setKids}/>
             </Route>
             <Redirect to="/account" />
           </Switch>
