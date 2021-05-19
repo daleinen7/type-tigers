@@ -12,8 +12,6 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-  console.log("req.user: ", req.user);
-  // const kids = await Kid.find();
   const kids = await Kid.find({user: req.user._id});
   res.json(kids);
 }
