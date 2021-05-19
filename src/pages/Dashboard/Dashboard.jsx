@@ -31,21 +31,6 @@ const DashboardSection = styled.div`
     width: 97%;
   }
 
-  button {
-    width: 270px;
-    font-family: Quicksand;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2.25rem;
-    text-align: center;
-    font-family: "Quicksand";
-    border-radius: 10px;
-    border: none;
-    background-color: #4f83ff;
-    box-shadow: 3px 3px 0 #0f45c3;
-    margin: 0;
-  }
-
   h1 {
     text-align: center;
   }
