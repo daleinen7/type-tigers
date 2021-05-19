@@ -1,0 +1,28 @@
+.body {
+    background-color: white;
+}
+h2 {
+   color: #4F83FF;
+}
+.text-column {
+    height: 200px;
+    flex: 2;
+}
+
+.img-column {
+   height: 200px;
+   flex: 1
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 3;
+}

@@ -40,7 +40,7 @@ export default function SideBar() {
           <Link to="/dashboard">Shop</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard ">Dashboard</Link>
         </li>
         <li>
           <Link to="/dashboard">Settings</Link>
