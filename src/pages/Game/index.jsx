@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import update from "immutability-helper";
+import axios from "axios";
 
 import FlashWord from "../../components/FlashWord";
 import UserAnswer from "../../components/UserAnswer";
@@ -55,7 +56,13 @@ const CoinDiv = styled.div`
   }
 `;
 
-export default function Game({ kids, setKids, activeKid }) {
+const CoinNum = styled.div`
+  position: absolute;
+  font-weight: bold;
+  font-size: 2rem;
+`;
+
+export default function Game({ kids, setKids, activeKid, getKids }) {
   const [flashWord, setFlashWord] = useState("");
   const [image, setImage] = useState("");
   const [sentence, setSentence] = useState("");
@@ -108,13 +115,14 @@ export default function Game({ kids, setKids, activeKid }) {
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440081/Group_352_eqamuy.svg",
     },
     {
-      word: "Group",
+      word: null,
       sentence:
         "After finding some cacti and Brian's friends, Bobby Bear found Brian and they went back home together.",
       image:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440083/Group_353_u3umos.svg",
     },
   ];
+
   const [correct, setCorrect] = useState(false);
   const [arrCount, setArrCount] = useState(0);
   const arrCounter = useRef(arrCount);
@@ -147,6 +155,19 @@ export default function Game({ kids, setKids, activeKid }) {
   };
 
   const handleNextWord = () => {
+    if (correct) {
+      let coin = kids[activeKid]?.coins + 1;
+      axios({
+        method: "put",
+        url: `http://localhost:3001/api/kids/${kids[activeKid]._id}`,
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        data: { coins: coin },
+      }).then((response) => console.log(response));
+      kids[activeKid].coins = kids[activeKid].coins + 1;
+      setKids([...kids, kids[activeKid]]);
+    }
     if (arrCounter.current < testLevel.length - 1) {
       const newCounter = arrCount + 1;
       setArrCount(newCounter);
@@ -159,18 +180,6 @@ export default function Game({ kids, setKids, activeKid }) {
       counter.current = 0;
       setWordTimer(false);
     }
-  };
-
-  const addCoin = () => {
-    fetch(`http://localhost:3001/api/kids/60a417854e7ac2828f9034b0`, {
-      method: "PUT",
-      body: { coins: 123 },
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
   };
 
   const handlePrevWord = () => {
@@ -208,7 +217,7 @@ export default function Game({ kids, setKids, activeKid }) {
       >
         Skip
       </Button>
-      <Image image={image} />
+      <Image image={image} flashWord={flashWord} />
       <FlashWord
         flashWord={flashWord}
         setFlashWord={setFlashWord}
@@ -245,7 +254,7 @@ export default function Game({ kids, setKids, activeKid }) {
         </Button>
       )}
       <CoinDiv>
-        <div onClick={addCoin}>{kids[activeKid].coins}</div>
+        <CoinNum>{kids[activeKid]?.coins}</CoinNum>
         <img
           width="100px"
           src="https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621385779/hugo-264_zlr6kn.svg"
