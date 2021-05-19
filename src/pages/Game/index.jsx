@@ -110,7 +110,9 @@ export default function Game() {
         setWordTimer={setWordTimer}
       />
       <Sentence sentence={sentence} />
-      <ErrorWords errorWords={errorWords} />
+      <div style={{ content: "", height: "20px", marginBottom: "40px" }}>
+        <ErrorWords errorWords={errorWords} />
+      </div>
       {flashWord ? (
         <UserAnswer
           flashWord={flashWord}

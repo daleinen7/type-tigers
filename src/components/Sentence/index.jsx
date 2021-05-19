@@ -4,7 +4,7 @@ import styled from "styled-components";
 const SentenceDiv = styled.div`
   font-size: 2rem;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 const Sentence = ({ sentence }) => {
