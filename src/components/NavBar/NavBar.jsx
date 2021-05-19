@@ -1,41 +1,31 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
-import styled from "styled-components";
-const Button = styled.button`
-  margin: 1vmin;
-  font-family: 'Quicksand';
-  padding: 1vmin;
-  color: var(--white);
-  background-color: #7566E5;
-  font-size: 3vmin;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  border: .1vmin solid var(--tan-2);
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-`
-const Nav = styled.div`
-font-family: 'Quicksand';
-color: white;
-background-color: #7566E5;
-`
-export default function NavBar({ user, setUser }) {
+import React, { useState } from 'react';
+import './NavBar.css'
 
+export default function NavBar({ user, setUser }) {
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
   function handleLogOut() {
     userService.logOut();
     setUser(null);
   }
 
   return (
-    <nav>
-      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/game">Game</NavLink>
-      &nbsp; | &nbsp;
-      <NavLink exact activeStyle={{backgroundColor: 'yellow'}} to="/account">Account</NavLink>
-      &nbsp; | &nbsp;
-      <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-    </nav>
+    <>
+    <nav className='navbar'>
+      <Link to='/' className='navbar-logo'>Type Tigers</Link>
+      <div className='menu-icon' onClick={handleClick}>
+        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+      </div>
+      <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+      <li className='nav-item'><Link to="/about" className='nav-links' onClick={closeMobileMenu}>About</Link></li>
+      <li className='nav-item'><Link to="/dashboard" className='nav-links' onClick={closeMobileMenu}>Dashboard</Link>
+      </li>
+      <li className='nav-item'><Link to="/game" className='nav-links' onClick={closeMobileMenu}>Game</Link></li>
+      <li className='nav-item'><Link to="" onClick={handleLogOut} className='nav-links-mobile'>Log Out</Link></li></ul>
+      
+    </nav> </>
   );
 }

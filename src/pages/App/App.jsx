@@ -6,12 +6,11 @@ import AuthPage from "../AuthPage/AuthPage";
 import Game from "../Game";
 import Dashboard from "../Dashboard/Dashboard";
 import Practice from "../Practice/Practice";
-import Account from "../Account/AccountPage";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Main = styled.div`
   color: black;
-  background: #FCF3E5;
+  background: #FFFFFF;
   font-family: 'Quicksand';
   justify-content: center;
 `;
@@ -22,16 +21,15 @@ export default function App() {
     <Main className="App">
       {user ? (
         <>
-          <h1>Type Tigers</h1>
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/game">
               <Game />
             </Route>
-            <Route path="/account">
-              <Account />
+            <Route path="/dashboard">
+              <Dashboard />
             </Route>
-            <Redirect to="/account" />
+            <Redirect to="/dashboard" />
           </Switch>
         </>
       ) : (

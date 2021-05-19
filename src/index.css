@@ -21,7 +21,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FCF3E5;
+  background-color: #FFFFFF;
   padding: 2vmin;
   height: 100vh;
 }
@@ -80,7 +80,7 @@ code {
 
 .form-container {
   padding: 3vmin;
-  background-color: #FCF3E5;
+  background-color: #FFFFFF;
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
 }
