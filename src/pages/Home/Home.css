@@ -7,8 +7,12 @@ h2 {
 .text-column {
     height: 200px;
     flex: 2;
+    padding: 0px 40px;
 }
-
+.button-column {
+    height: 50px;
+    flex: 2;
+}
 .img-column {
    height: 200px;
    flex: 1
@@ -18,6 +22,8 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .column {

@@ -8,8 +8,13 @@ function Home() {
                 <div className="text-column"><h2>The best way to improve your spelling</h2>
                 <p>Hey! This is the place for your kids to improve their spelling. We offer amazing spelling challenges, and incentives to stay motivated.</p></div>
             <div className="img-column"> <img src='https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621450699/hugo-284_4_vkueup.svg' height="200" width="auto" alt="Hugo logo"/></div>
-            <div className="row"><button>Login</button>
-            <button>Sign Up</button></div></div>
+            </div>
+            <div className="row">
+                <div className="button-column">
+                    <button>Login</button>
+                    <button>Sign Up</button>
+                </div>
+            </div>
         <div className="row">
                 <div className="img-column"><img src='https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621458446/grade-levels.svg' height="200" width="auto" alt="pencil clipboard" /></div><div className="text-column"><h2>We offer different grade level difficulties</h2>
                 <p>Bearcabulary offers games for kindergarten through 6th grade students. Each game incorporates interactive stories and fun quizzes for your child to have an educational adventure!</p></div>
