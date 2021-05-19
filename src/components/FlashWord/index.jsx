@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
 const Game = styled.div`
   color: black;
   background: white;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
+  font-weight: bold;
   justify-content: center;
-  padding: .7rem;
+  padding: 0.7rem;
   font-size: 36px;
+`;
+
+const Div = styled.div`
+  font-size: 3rem;
 `;
 
 export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
@@ -19,9 +25,7 @@ export default function FlashWord({ flashWord, wordTimer, setWordTimer }) {
 
   return (
     <Game>
-      <p style={{ visibility: !wordTimer ? "" : "hidden" }}>
-        {flashWord}
-      </p>
+      <Div style={{ visibility: !wordTimer ? "" : "hidden" }}>{flashWord}</Div>
     </Game>
   );
 }
