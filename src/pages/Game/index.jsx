@@ -82,7 +82,7 @@ export default function Game({ kids, setKids, activeKid, story }) {
       word: "Small",
       sentence: "Brian the bunny is very _____ in size and hard to find!",
       image:
-        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440084/Group_347_phosos.svg",
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440082/Group_348_uhtdhu.svg",
       progBar:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_356_uzplr7.svg",
     },
@@ -146,6 +146,13 @@ export default function Game({ kids, setKids, activeKid, story }) {
       progBar:
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_363_q2rfte.svg",
     },
+    {
+      word: null,
+      sentence: "Level Complete!",
+      image:
+        "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440078/Group_354_fxlrtv.svg",
+      progBar: "",
+    },
   ];
 
   const [correct, setCorrect] = useState(false);
@@ -198,6 +205,8 @@ export default function Game({ kids, setKids, activeKid, story }) {
       setArrCount(newCounter);
       arrCounter.current = newCounter;
       setFlashWord(testLevel[arrCounter.current]?.word);
+      setSentence(testLevel[arrCounter.current]?.sentence);
+      setImage(testLevel[arrCounter.current]?.image);
       setCorrect(false);
       setErrorWords([]);
       setClicked([]);
@@ -213,6 +222,8 @@ export default function Game({ kids, setKids, activeKid, story }) {
       setArrCount(newCounter);
       arrCounter.current = newCounter;
       setFlashWord(testLevel[arrCounter.current]?.word);
+      setSentence(testLevel[arrCounter.current]?.sentence);
+      setImage(testLevel[arrCounter.current]?.image);
       setCorrect(false);
       setErrorWords([]);
       setClicked([]);
