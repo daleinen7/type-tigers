@@ -3,6 +3,7 @@ import Profile from "../../components/Profile/Profile";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import bear from "../../images/bear.svg";
+import map from '../../images/map.svg';
 import * as kidApi from "../../utilities/kids-api";
 import styled from "styled-components";
 
@@ -15,6 +16,11 @@ const DashboardSection = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  .buttonAndImg {
+    display: flex;
+    flex-direction: column;
+  }
 
   ul {
     padding: 0;
@@ -29,21 +35,6 @@ const DashboardSection = styled.div`
     border-bottom: 1px solid #ffd600;
     padding-bottom: 40px;
     width: 97%;
-  }
-
-  button {
-    width: 270px;
-    font-family: Quicksand;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2.25rem;
-    text-align: center;
-    font-family: "Quicksand";
-    border-radius: 10px;
-    border: none;
-    background-color: #4f83ff;
-    box-shadow: 3px 3px 0 #0f45c3;
-    margin: 0;
   }
 
   h1 {
@@ -84,12 +75,17 @@ export default function Dashboard({ kids, setKids }) {
     <StyledDiv>
       <SideBar />
       <DashboardSection>
-        <h1>Your Dashboard</h1>
-        <div className="play">
-          <img src={bear} alt="bear" />
-          <Link to="/game" style={linkStyle}>
-            Let's Play
-          </Link>
+        <div className="dashboardHeading">
+          <h1>Your Dashboard</h1>
+          <div className="play">
+            <img src={bear} alt="bear" />
+            <div className="buttonAndImg">
+              <img src={map} alt="map" />
+              <Link to="/game" style={linkStyle}>
+                Let's Play
+              </Link>
+            </div>
+          </div>
         </div>
 
         <ul>
