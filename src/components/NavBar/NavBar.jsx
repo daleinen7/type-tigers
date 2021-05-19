@@ -36,7 +36,12 @@ export default function NavBar({ user, setUser }) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="" onClick={handleLogOut} className="nav-links-mobile">
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to=""
+              onClick={handleLogOut}
+              className="nav-links-mobile"
+            >
               Log Out
             </Link>
           </li>
