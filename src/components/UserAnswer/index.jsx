@@ -169,9 +169,19 @@ export default function Answer({
         }}
       >
         {clickedLetters?.map((letter, index) => {
-          return <LetterDiv key={index}>{letter}</LetterDiv>;
+          return (
+            <LetterDiv
+              style={{
+                backgroundColor: correct ? "#c5ffba" : "",
+                border: correct ? "3px solid #2a5e20" : "",
+                color: correct ? "#2a5e20" : "",
+              }}
+              key={index}
+            >
+              {letter}
+            </LetterDiv>
+          );
         })}
-        {correct && <div>✓</div>}
       </div>
       <FlexDiv>
         <div>
@@ -184,6 +194,7 @@ export default function Answer({
                   index={index}
                   addLetter={addLetter}
                   letter={letter}
+                  correct={correct}
                 />
               );
             })}
@@ -196,9 +207,28 @@ export default function Answer({
             justifyContent: "space-between",
           }}
         >
-          {!correct && <Button onClick={removeLetter}>Backspace</Button>}
+          <Button
+            style={{
+              pointerEvents: correct ? "none" : "auto",
+              backgroundColor: correct ? "#C9D5F1" : "",
+              boxShadow: correct ? "3px 3px 0 #66728F" : "",
+              color: correct ? "#66728F" : "",
+            }}
+            onClick={removeLetter}
+          >
+            Backspace
+          </Button>
           {correct ? (
-            <Button onClick={handleNextWord}>Next</Button>
+            <Button
+              style={{
+                color: "black",
+                backgroundColor: "#FFD80A",
+                boxShadow: "3px 3px 0 #F05220",
+              }}
+              onClick={handleNextWord}
+            >
+              Next
+            </Button>
           ) : (
             <Button
               style={{

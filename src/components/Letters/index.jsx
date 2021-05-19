@@ -18,7 +18,13 @@ const Letter = styled.button`
   margin: 0;
 `;
 
-export default function Letters({ addLetter, letter, index, clicked }) {
+export default function Letters({
+  addLetter,
+  letter,
+  index,
+  clicked,
+  correct,
+}) {
   const handleClick = (letter, index) => {
     addLetter(letter, index);
   };
@@ -27,10 +33,13 @@ export default function Letters({ addLetter, letter, index, clicked }) {
     <>
       <Letter
         style={{
-          pointerEvents: clicked.includes(index) ? "none" : "auto",
-          backgroundColor: clicked.includes(index) ? "#C9D5F1" : "",
-          boxShadow: clicked.includes(index) ? "inset -3px 3px 0 #66728F" : "",
-          color: clicked.includes(index) ? "#66728F" : "",
+          pointerEvents: clicked.includes(index) || correct ? "none" : "auto",
+          backgroundColor: clicked.includes(index) || correct ? "#C9D5F1" : "",
+          boxShadow:
+            clicked.includes(index) || correct
+              ? "inset -3px 3px 0 #66728F"
+              : "",
+          color: clicked.includes(index) || correct ? "#66728F" : "",
         }}
         onClick={() => handleClick(letter, index)}
       >
