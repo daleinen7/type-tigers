@@ -6,6 +6,7 @@ const wordSchema = new Schema(
     word: { type: String, required: true },
     sentence: { type: String, default: "" },
     image: { type: String, default: "" },
+    progBar: { type: String, default: "" },
   },
   { timestamps: true }
 );

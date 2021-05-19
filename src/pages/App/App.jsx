@@ -16,7 +16,7 @@ const Main = styled.div`
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [kids, setKids] = useState([]);
-  const [activeKid, setActiveKid] = useState(kids.length ? kids[0] : null);
+  const [activeKid, setActiveKid] = useState(kids.length ? 0 : null);
 
   return (
     <Main className="App">
@@ -25,7 +25,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/game">
-              <Game />
+              <Game kids={kids} setKids={setKids} activeKid={activeKid} />
             </Route>
             <Route path="/dashboard">
               <Dashboard kids={kids} setKids={setKids} />
