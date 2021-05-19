@@ -11,7 +11,6 @@ const Div = styled.div`
 `;
 
 const ErrorWords = ({ errorWords }) => {
-  console.log("errorWords -", errorWords);
   return (
     <>
       {errorWords.map((word, index) => {
