@@ -108,7 +108,7 @@ export default function Game({ kids, setKids, activeKid }) {
         "https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621440081/Group_352_eqamuy.svg",
     },
     {
-      word: "Group",
+      word: null,
       sentence:
         "After finding some cacti and Brian's friends, Bobby Bear found Brian and they went back home together.",
       image:
@@ -208,7 +208,7 @@ export default function Game({ kids, setKids, activeKid }) {
       >
         Skip
       </Button>
-      <Image image={image} />
+      <Image image={image} flashWord={flashWord} />
       <FlashWord
         flashWord={flashWord}
         setFlashWord={setFlashWord}
