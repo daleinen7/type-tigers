@@ -1,10 +1,10 @@
 :root {
   --white: #ffffff;
-  --tan-1: #fbf9f6;
-  --tan-2: #e7e2dd;
-  --tan-3: #e2d9d1;
-  --tan-4: #d3c1ae;
-  --orange: #e6964b;
+  --tan-1: #ffffff;
+  --tan-2: #ffffff;
+  --tan-3: #ffffff;
+  --tan-4: #ffffff;
+  --orange: #4F83FF;
   --text-light: #968c84;
   --text-dark: #615954;
 }
@@ -23,7 +23,7 @@ body {
     "Quicksand", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e5e5e5;
+  background-color: #ffffff;
   /* padding: 2vmin; */
   height: 100vh;
 }
@@ -73,7 +73,7 @@ code {
   align-items: center;
   background-color: white;
   color: black;
-  border: 0.1vmin solid var(--tan-3);
+  border: 0.1vmin solid;
   border-radius: 1vmin;
   padding: 0.6vmin;
   text-align: center;
@@ -82,8 +82,8 @@ code {
 
 .form-container {
   padding: 3vmin;
-  background-color: #fcf3e5;
-  border: 0.1vmin solid var(--tan-3);
+  background-color: #ffffff;
+  border: 0.1vmin solid;
   border-radius: 1vmin;
 }
 

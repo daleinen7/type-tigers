@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
 
     a {
       text-decoration: none;
-      font-family: Poppins;
+      font-family: Quicksand;
       font-style: normal;
       font-weight: bold;
       font-size: 2.5rem;
@@ -33,12 +33,12 @@ export default function SideBar() {
     <StyledDiv>
       <ul>
         <li>
-          <Link to='/dashboard'>
+          <Link to='/home'>
             Home
           </Link>
         </li>
         <li>
-          <Link to='/dashboard'>
+          <Link to='/shop'>
             Shop
           </Link>
         </li>
@@ -48,7 +48,7 @@ export default function SideBar() {
           </Link>
         </li>
         <li>
-          <Link to='/dashboard'>
+          <Link to='/settings'>
             Settings
           </Link>
         </li>
