@@ -210,13 +210,13 @@ export default function Answer({
           <Button
             style={{
               pointerEvents: correct ? "none" : "auto",
-              backgroundColor: correct ? "#C9D5F1" : "",
-              boxShadow: correct ? "3px 3px 0 #66728F" : "",
-              color: correct ? "#66728F" : "",
+              backgroundColor: correct ? "#C9D5F1" : "#e36868",
+              boxShadow: correct ? "3px 3px 0 #66728F" : "3px 3px 0 #4a0c0c",
+              color: correct ? "#66728F" : "black",
             }}
             onClick={removeLetter}
           >
-            Backspace
+            ⌫
           </Button>
           {correct ? (
             <Button
@@ -233,12 +233,13 @@ export default function Answer({
             <Button
               style={{
                 color: "black",
-                backgroundColor: "#FFD80A",
-                boxShadow: "3px 3px 0 #F05220",
+                backgroundColor: "#65f06e",
+                boxShadow: "3px 3px 0 #0e4511",
+                fontSize: "3rem",
               }}
               onClick={() => compareAnswer(clickedLetters)}
             >
-              Submit
+              ✓
             </Button>
           )}
         </div>

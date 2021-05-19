@@ -61,7 +61,7 @@ export default function Game() {
     } else {
       let error = [];
       for (let letter in flashWord.split("")) {
-        if (flashWord[letter] === word[letter].toLowerCase()) {
+        if (flashWord[letter].toLowerCase() === word[letter].toLowerCase()) {
           error.push([word[letter], true]);
         } else {
           error.push([word[letter], false]);
