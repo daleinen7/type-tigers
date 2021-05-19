@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   background: #A4BFFF;
-  height: 100vh;
+  min-height: 100vh;
   width: 322px;
+  border-radius: 0 30px 30px 0;
 
   ul{
     padding: 0;
