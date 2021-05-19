@@ -55,7 +55,7 @@ const CoinDiv = styled.div`
   }
 `;
 
-export default function Game() {
+export default function Game({ kids, setKids, activeKid }) {
   const [flashWord, setFlashWord] = useState("");
   const [image, setImage] = useState("");
   const [sentence, setSentence] = useState("");
@@ -161,6 +161,18 @@ export default function Game() {
     }
   };
 
+  const addCoin = () => {
+    fetch(`http://localhost:3001/api/kids/60a417854e7ac2828f9034b0`, {
+      method: "PUT",
+      body: { coins: 123 },
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  };
+
   const handlePrevWord = () => {
     if (arrCounter.current > 0) {
       const newCounter = arrCount - 1;
@@ -233,6 +245,7 @@ export default function Game() {
         </Button>
       )}
       <CoinDiv>
+        <div onClick={addCoin}>{kids[activeKid].coins}</div>
         <img
           width="100px"
           src="https://res.cloudinary.com/dsfqk4cg8/image/upload/v1621385779/hugo-264_zlr6kn.svg"

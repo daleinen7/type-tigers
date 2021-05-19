@@ -16,7 +16,7 @@ const Main = styled.div`
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [kids, setKids] = useState([]);
-  const [activeKid, setActiveKid] = useState(kids.length ? 0 : null);
+  const [activeKid, setActiveKid] = useState(kids.length ? 0 : 0);
 
   return (
     <Main className="App">
