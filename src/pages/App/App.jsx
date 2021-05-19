@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
@@ -7,6 +7,7 @@ import Game from "../Game";
 import Dashboard from "../Dashboard/Dashboard";
 import Home from "../Home/Home";
 import NavBar from "../../components/NavBar/NavBar";
+import * as kidApi from "../../utilities/kids-api";
 import styled from "styled-components";
 const Main = styled.div`
   color: black;
@@ -19,6 +20,24 @@ export default function App() {
   const [kids, setKids] = useState([]);
   const [activeKid, setActiveKid] = useState(kids.length ? 0 : 0);
 
+  useEffect(() => {
+    getKids();
+  }, []);
+
+  async function getKids() {
+    const allKids = await kidApi.getAll();
+    setKids(allKids);
+  }
+
+  useEffect(() => {
+    getKids();
+  }, []);
+
+  async function getKids() {
+    const allKids = await kidApi.getAll();
+    setKids(allKids);
+  }
+  
   return (
     <Main className="App">
       {user ? (
