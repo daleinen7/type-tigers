@@ -161,7 +161,7 @@ export default function Answer({
         })}
         {correct && <div>✓</div>}
       </div>
-      {!correct && <button onClick={removeLetter}>Backspace</button>}
+
       <Grid>
         {selectableLetters?.map((letter, index) => {
           return (
@@ -175,6 +175,7 @@ export default function Answer({
           );
         })}
       </Grid>
+      {!correct && <button onClick={removeLetter}>Backspace</button>}
       {correct ? (
         <button onClick={handleNextWord}>Next</button>
       ) : (

@@ -6,6 +6,7 @@ import FlashWord from "../../components/FlashWord";
 import UserAnswer from "../../components/UserAnswer";
 import ErrorWords from "../../components/ErrorWords";
 import Image from "../../components/Image";
+import Sentence from "../../components/Sentence";
 
 const StyledDiv = styled.div`
   background: #ffffff;
@@ -15,6 +16,7 @@ const StyledDiv = styled.div`
 export default function Game() {
   const [flashWord, setFlashWord] = useState("");
   const [image, setImage] = useState("");
+  const [sentence, setSentence] = useState("");
   const [errorWords, setErrorWords] = useState([]);
   const testArr = ["five", "two", "three"];
   const testLevel = [
@@ -94,6 +96,7 @@ export default function Game() {
   useEffect(() => {
     setFlashWord(testLevel[arrCounter.current].word);
     setImage(testLevel[arrCounter.current].image);
+    setSentence(testLevel[arrCounter.current].sentence);
   });
 
   return (
@@ -106,8 +109,9 @@ export default function Game() {
         wordTimer={wordTimer}
         setWordTimer={setWordTimer}
       />
+      <Sentence sentence={sentence} />
       <ErrorWords errorWords={errorWords} />
-      {flashWord && (
+      {flashWord ? (
         <UserAnswer
           flashWord={flashWord}
           compareAnswer={compareAnswer}
@@ -119,6 +123,8 @@ export default function Game() {
           letterCount={letterCount}
           setLetterCount={setLetterCount}
         />
+      ) : (
+        <button onClick={handleNextWord}>Continue</button>
       )}
     </StyledDiv>
   );

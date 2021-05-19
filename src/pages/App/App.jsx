@@ -11,8 +11,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Main = styled.div`
   color: black;
-  background: #FCF3E5;
-  font-family: 'Quicksand';
+  background: #fcf3e5;
+  font-family: "Quicksand";
   justify-content: center;
 `;
 export default function App() {
