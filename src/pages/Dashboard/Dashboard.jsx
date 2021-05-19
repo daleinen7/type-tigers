@@ -1,4 +1,5 @@
 import SideBar from '../../components/SideBar/SideBar';
+import Profile from '../../components/Profile/Profile';
 import {Link} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import bear from '../../images/bear.svg';
@@ -12,12 +13,24 @@ const StyledDiv = styled.div`
 const DashboardSection = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
+
+  ul {
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+  }
+  
   .play {
     display: flex;
     justify-content: space-evenly;  
     align-items: center;
+    border-bottom: 1px solid #FFD600;
+    padding-bottom: 40px;
+    width: 97%;
   }
+
   button {
     width: 270px;
     font-family: Quicksand;
@@ -90,12 +103,8 @@ export default function Dashboard({kids, setKids}) {
         <ul>
           {kids.map(kid => {
             return (
-            <li key={kid._id}>
-              {kid.name}
-              {kid.level} | 
-              {kid.coins}
-            </li>)
-          })}
+              <Profile name={kid.name} coins={kid.coins} level={kid.level} key={kid._id}/>
+          )})}
         </ul>
 
         <form onSubmit={handleSubmit} autoComplete="off">
