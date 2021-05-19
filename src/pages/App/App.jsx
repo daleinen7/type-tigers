@@ -5,7 +5,7 @@ import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import Game from "../Game";
 import Dashboard from "../Dashboard/Dashboard";
-import Practice from "../Practice/Practice";
+import Home from "../Home/Home";
 import NavBar from "../../components/NavBar/NavBar";
 import styled from "styled-components";
 const Main = styled.div`
@@ -23,6 +23,9 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Switch>
+            <Route path="/home">
+              <Home />
+            </Route>
             <Route path="/game">
               <Game />
             </Route>
